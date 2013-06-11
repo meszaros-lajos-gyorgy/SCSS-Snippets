@@ -12,3 +12,9 @@ $wendor_prefixes :
 		#{$prefix}user-select : none;
 	}
 }
+
+// ----- example ----- //
+
+h1.donthightlight{
+	@include unselectable;
+}
