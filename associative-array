@@ -1,7 +1,7 @@
 // Finds a value in an "associative array"
 // @param $array	: a nested list, primarily with 2 values by row( index1 value1, index2 value2, etc )
 // @param $index	: the index, that you search the value for
-@function value($array, $index){
+@function array-value($array, $index){
   $found	: false;
 	$i		: 1;
 	$index	: unquote($index);
@@ -31,6 +31,6 @@ $faux_array :
   "complex" (0 0 1px 0 #000, 0 0 5px 0 #733);
 
 .test{
-  border-left : value($faux_array, "border"); // search index can be quoted
-  box-shadow : value($faux_array, complex);   // or unquoted
+  border-left : array-value($faux_array, "border"); // search index can be quoted
+  box-shadow : array-value($faux_array, complex);   // or unquoted
 }
