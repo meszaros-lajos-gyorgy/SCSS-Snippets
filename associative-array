@@ -1,4 +1,6 @@
 // Finds a value in an "associative array"
+// @param $array	: a nested list, primarily with 2 values by row( index1 value1, index2 value2, etc )
+// @param $index	: the index, that you search the value for
 @function value($array, $index){
   $found	: false;
 	$i		: 1;
