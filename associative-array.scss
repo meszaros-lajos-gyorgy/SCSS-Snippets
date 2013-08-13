@@ -1,13 +1,38 @@
+// Get the length of an "associative array"
+@function array-length($x){
+	@if type-of($x) != list{
+		@return 0;
+	}
+	$l : length($x);
+	@if $l < 2{
+		@return 0;
+	}
+	
+	$first : nth($x, 1);
+	@if type-of($first) != list{
+		@return if($l == 2, 1, 0);
+	}
+	@return $l;
+}
+
 // Finds a value in an "associative array"
 // @param $array		: a nested list, primarily with 2 values by row( index1 value1, index2 value2, etc )
 // @param $index		: the index, that you search the value for
-// @param $if-not-found	: returns this, if index not found
+// @param $if-not-found		: returns this, if index not found
 @function array-value($array, $index, $if-not-found : false){
-	$index	: unquote($index);
+	$l		: array-length($array);
+	$index	: quote($index);
 	
-	@each $element in $array{
-		@if unquote(nth($element, 1)) == $index{
-			@return nth($element, 2);
+	@if $l == 1{
+		@if quote(nth($array, 1)) == $index{
+			@return nth($array, 2);
+		}
+	}@else if $l > 1{
+		@for $i from 1 through $l{
+			$element : nth($array, $i);
+			@if quote(nth($element, 1)) == $index{
+				@return nth($element, 2);
+			}
 		}
 	}
 	
@@ -30,3 +55,24 @@ $faux_array :
   border-left : array-value($faux_array, "border"); // search index can be quoted
   box-shadow : array-value($faux_array, complex);   // or unquoted
 }
+
+// ----- example 2 ----- //
+
+@mixin coloring($params){
+	background-color : array-value($params, "bgcolor", yellow);
+	color : array-value($params, "color", red);
+}
+
+p{
+	@include test((
+		"color" green,
+		"bgcolor" blue
+	));
+}
+
+/* will output:
+p{
+	background-color : blue;
+	color : green;
+}
+*/
