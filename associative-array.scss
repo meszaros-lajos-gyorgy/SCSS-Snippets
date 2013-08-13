@@ -1,21 +1,17 @@
 // Finds a value in an "associative array"
-// @param $array	: a nested list, primarily with 2 values by row( index1 value1, index2 value2, etc )
-// @param $index	: the index, that you search the value for
-@function array-value($array, $index){
-  $found	: false;
-	$i		: 1;
+// @param $array		: a nested list, primarily with 2 values by row( index1 value1, index2 value2, etc )
+// @param $index		: the index, that you search the value for
+// @param $if-not-found	: returns this, if index not found
+@function array-value($array, $index, $if-not-found : false){
 	$index	: unquote($index);
 	
-	@while $found != true{
-		$element : nth($array, $i);
+	@each $element in $array{
 		@if unquote(nth($element, 1)) == $index{
-			$value : nth($element, 2);
-			$found : true;
+			@return nth($element, 2);
 		}
-		$i : $i + 1;
 	}
 	
-	@return $value;
+	@return $if-not-found;
 }
 
 // ----- example ----- //
