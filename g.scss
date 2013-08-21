@@ -1,3 +1,10 @@
+/**
+ * Currently not working with leafo's scssphp (version 0.0.7), because the index function
+ * doesn't work with interpolated strings, works with other compilers.
+ * 
+ * https://github.com/leafo/scssphp/issues/111
+ */
+
 @function hex2num($val){
 	// if $val is not a string, then interpolate it, else quote it, if not quoted.
 	$val : if(type-of($val) != string, "#{$val}", quote($val));
