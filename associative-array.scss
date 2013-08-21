@@ -1,13 +1,15 @@
 // Get the length of an "associative array"
 @function array-length($x){
-	@if type-of($x) != list{
+	@if (type-of($x) != list) and (type-of($x) != arglist){
 		@return 0;
 	}
 	$l : length($x);
+	@if type-of($x) == arglist{
+		@return $l;
+	}
 	@if $l < 2{
 		@return 0;
 	}
-	
 	$first : nth($x, 1);
 	@if type-of($first) != list{
 		@return if($l == 2, 1, 0);
@@ -58,6 +60,7 @@ $faux_array :
 
 // ----- example 2 ----- //
 
+// 1 parameter version
 @mixin coloring($params){
 	background-color : array-value($params, "bgcolor", yellow);
 	color : array-value($params, "color", red);
@@ -70,7 +73,20 @@ p{
 	));
 }
 
-/* will output:
+// parameter list version
+@mixin coloring($params...){
+	background-color : array-value($params, "bgcolor", yellow);
+	color : array-value($params, "color", red);
+}
+
+p{
+	@include test(
+		"color" green,
+		"bgcolor" blue
+	);
+}
+
+/* both will output:
 p{
 	background-color : blue;
 	color : green;
