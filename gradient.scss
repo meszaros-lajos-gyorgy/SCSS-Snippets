@@ -10,14 +10,7 @@ $wendor_prefixes :
 // @param $dir				: top|bottom|left|right
 // @param $color1, $color2	: add colors
 @function gradient-ie($dir, $color1, $color2){
-	@if $dir == right{
-		$swap : true;
-	}@else if $dir == bottom{
-		$swap : true;
-	}@else{
-		$swap : false;
-	}
-	@if $swap == true{
+	@if ($dir == right) or ($dir == bottom){
 		$c : $color1;
 		$color1 : $color2;
 		$color2 : $c;
