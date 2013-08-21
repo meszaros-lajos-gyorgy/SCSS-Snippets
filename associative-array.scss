@@ -1,3 +1,10 @@
+/**
+ * "parameter list version" (as seen in example2 below) is currently not working with leafo's scssphp (version 0.0.7),
+ * because type "arglist" is implemented as "list". To workaround, comment out line 14-15-16.
+ * 
+ * https://github.com/leafo/scssphp/issues/112
+ */
+
 // Get the length of an "associative array"
 @function array-length($x){
 	@if (type-of($x) != list) and (type-of($x) != arglist){
