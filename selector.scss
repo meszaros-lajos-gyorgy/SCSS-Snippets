@@ -1,0 +1,33 @@
+// Helps interpolating a list of selector strings
+@function selector($elements, $before : "", $after : ""){
+	$merged		: "";
+	@each $i in $elements{
+		$merged : $merged + if($merged != "", ", ", "") + $before + $i + $after;
+	}
+	@return $merged;
+}
+
+// ----- example ----- //
+
+$sel : "i" "em";
+
+// no append : body i, body em{  }
+body{
+    #{selector($sel)}{            // will return "i, em"
+        font-style : normal;
+    }
+}
+
+// append before : p>i, p>em{ }
+p{
+    #{selector($sel, "&>")}{      // will return "&>i, &>em"
+        font-style : italic;
+    }
+}
+
+// append after : i span, em span{ }
+span{
+    #{selector($sel, "", " &")}{  // will return "i &, em &"
+        color : blue;
+    }
+}
