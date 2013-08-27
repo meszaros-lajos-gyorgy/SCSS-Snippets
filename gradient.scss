@@ -1,5 +1,5 @@
 // prefixes for the wendor specific function
-$wendor_prefixes :
+$vendor_prefixes :
     "        ",
 	"     -o-",
 	"    -ms-",
@@ -39,7 +39,7 @@ $wendor_prefixes :
 
 // Simple 2 color gradient in all browsers
 .gradient-bg{
-	@each $prefix in $wendor_prefixes{
+	@each $prefix in $vendor_prefixes{
 		background : gradient($prefix, top, #2e2e2e, #9a47b2);
 	}
 }
@@ -52,7 +52,7 @@ body.ie .gradient-bg{
 
 // Complex gradient with multiple specified steps and with more css background elements
 .gradient-bg-with-color{
-	@each $prefix in $wendor_prefixes{
+	@each $prefix in $vendor_prefixes{
 		$color : #00f;
 		background : gradient($prefix, top, rgba($color, .75) 0%, rgba($color, .35) 50%, rgba($color, 0) 100%), green;
 	}
