@@ -1,6 +1,9 @@
-// The code does not work with the current SCSSPHP version (0.0.7), because it has a bug,
-// that interpolated strings are not the same as plain strings:
-// https://github.com/leafo/scssphp/issues/111
+/**
+ * This code does not work with the current SCSSPHP version (0.0.7), because it has a bug,
+ * that interpolated strings are not the same as plain strings:
+ *
+ * https://github.com/leafo/scssphp/issues/111
+ */
 
 // Helps interpolating a list of selector strings
 @function selector($elements, $before : "", $after : ""){
