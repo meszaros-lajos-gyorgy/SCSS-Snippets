@@ -49,13 +49,3 @@
 	$c : hex2num($c);
 	@return rgb($c, $c, $c);
 }
-
-// ----- example ----- //
-
-p{
-  color : g(3f); // color : #3f3f3f;
-}
-
-a{
-  background : url("test.png") no-repeat g(7); // background : url("test.png") no-repeat #777777;
-}
