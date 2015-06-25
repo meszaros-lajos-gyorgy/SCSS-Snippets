@@ -11,9 +11,3 @@
 		#{$prefix}user-select : none;
 	}
 }
-
-// ----- example ----- //
-
-h1.dont-highlight{
-	@include unselectable;
-}
