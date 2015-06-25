@@ -34,26 +34,3 @@ $vendor_prefixes :
 @function gradient($prefix, $dir, $colors...){
 	@return #{$prefix}linear-gradient($dir, $colors);
 }
-
-// ----- example ----- //
-
-// Simple 2 color gradient in all browsers
-.gradient-bg{
-	@each $prefix in $vendor_prefixes{
-		background : gradient($prefix, top, #2e2e2e, #9a47b2);
-	}
-}
-
-// Gradient for IE
-body.ie .gradient-bg{
-	zoom : 1;
-	filter : gradient-ie(top, #2e2e2e, #9a47b2);
-}
-
-// Complex gradient with multiple specified steps and with more css background elements
-.gradient-bg-with-color{
-	@each $prefix in $vendor_prefixes{
-		$color : #00f;
-		background : gradient($prefix, top, rgba($color, .75) 0%, rgba($color, .35) 50%, rgba($color, 0) 100%), green;
-	}
-}
